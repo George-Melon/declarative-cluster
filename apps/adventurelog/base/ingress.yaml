@@ -17,6 +17,20 @@ spec:
             name: adventurelog-frontend
             port:
               number: 80
+      - path: /admin
+        pathType: Prefix
+        backend:
+          service:
+            name: adventurelog-backend
+            port:
+              number: 8000
+      - path: /static
+        pathType: Prefix
+        backend:
+          service:
+            name: adventurelog-backend
+            port:
+              number: 8000
   tls:
   - hosts: [travel.infrazone.cc]
     secretName: adventurelog-tls
