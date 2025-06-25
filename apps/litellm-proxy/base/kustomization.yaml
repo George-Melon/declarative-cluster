@@ -1,6 +1,9 @@
 resources:
   - namespace.yaml
   - configmap.yaml
+  - secret.yaml
+  - db.yaml
+  - pvc.yaml
   - deployment.yaml
   - service.yaml
   - ingress.yaml
