@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: litellm-proxy
+  namespace: litellm-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: litellm-proxy}
+  template:
+    metadata:
+      labels: {app: litellm-proxy}
+    spec:
+      containers:
+      - name: proxy
+        image: ghcr.io/berriai/litellm:main-stable
+        args: ["--config", "/etc/litellm/config.yaml"]
+        ports:
+        - containerPort: 4000
+        volumeMounts:
+        - name: config
+          mountPath: /etc/litellm
+      volumes:
+      - name: config
+        configMap:
+          name: litellm-config
